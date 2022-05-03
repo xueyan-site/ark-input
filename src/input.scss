@@ -29,6 +29,9 @@
     outline: none;
     border: none;
     background: transparent;
+    &::placeholder {
+      color: $disabled-font-color;
+    }
   }
   .icon {
     flex: none;
