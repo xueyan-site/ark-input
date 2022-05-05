@@ -3,21 +3,30 @@ import cn from 'classnames'
 import { CloseIcon } from 'xueyan-react-icon'
 import styles from './input.scss'
 
+export type InputOnChange<T> = (
+  value: T,
+  event: React.ChangeEvent<HTMLInputElement>
+) => void
+
+export type InputOnClear = (
+  event: React.MouseEvent<HTMLDivElement, MouseEvent>
+) => void
+
 export interface InputProps<T> {
   /** 类名 */
   className?: string
   /** 样式 */
   style?: React.CSSProperties
-  /** 输入框提示 */
-  placeholder?: string
   /** 已选值 */
   value?: T
-  /** 改变已选值 */
-  onChange?: (value?: T) => void
-  /** 允许清除 */
-  allowClear?: boolean
   /** 禁止修改 */
   disabled?: boolean
+  /** 输入框提示 */
+  placeholder?: string
+  /** 改变已选值 */
+  onChange?: InputOnChange<T>
+  /** 清除 */
+  onClear?: InputOnClear
 }
 
 export interface InputRef {
@@ -30,11 +39,11 @@ export interface InputRef {
 export const Input = forwardRef<InputRef, InputProps<any>>(({
   className,
   style,
-  placeholder,
   value,
+  placeholder,
+  disabled,
   onChange,
-  allowClear,
-  disabled
+  onClear
 }, ref) => {
   const rootRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -56,31 +65,30 @@ export const Input = forwardRef<InputRef, InputProps<any>>(({
       className={cn(styles.xrinput, className, {
         [styles.active]: active,
         [styles.disabled]: disabled,
-        [styles.allowclear]: allowClear && !disabled
+        [styles.allowclear]: !disabled && value && onClear
       })}
     >
       <input 
         ref={inputRef}
-        className={cn(styles.block, styles.label)}
-        value={value}
+        className={cn(styles.block, styles.input)}
         placeholder={placeholder || '请输入'}
         disabled={disabled}
+        value={value || ''}
         onFocus={() => setActive(true)}
         onBlur={() => setActive(false)}
         onChange={(event) => {
           if (onChange) {
-            onChange(event.target.value)
+            onChange(event.target.value, event)
           }
         }}
       />
-      {allowClear && value && !disabled && (
+      {!disabled && value && onClear && (
         <div 
           className={cn(styles.block, styles.icon, styles.clear)}
-          onClick={() => {
-            if (onChange) {
-              onChange('')
-              inputRef.current?.blur()
-            }
+          onClick={event => {
+            inputRef.current?.blur()
+            event.stopPropagation()
+            onClear(event)
           }}
         >
           <CloseIcon />

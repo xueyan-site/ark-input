@@ -1,6 +1,6 @@
 {
   "name": "xueyan-react-input",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "xueyan-site <xueyan@xueyan.site>",
   "license": "LGPL-3.0",
   "description": "react input component",
@@ -28,7 +28,7 @@
   "dependencies": {
     "@babel/runtime": "^7.12.0",
     "xueyan-react-icon": "^1.1.2",
-    "xueyan-react-style": "^1.2.1"
+    "xueyan-react-style": "^2.0.2"
   },
   "peerDependencies": {
     "classnames": "^2.3.0",

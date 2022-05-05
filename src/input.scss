@@ -1,5 +1,3 @@
-@import "./common.scss";
-
 .xrinput {
   width: 100%;
   height: 32px;
@@ -10,18 +8,19 @@
   flex-flow: row nowrap;
   align-items: stretch;
   position: relative;
-  color: $font-color;
+  color: var(--font);
   font-size: 14px;
   line-height: 1.5;
   font-weight: 400;
-  border: 1px solid $border-color;
+  background-color: var(--base1);
+  border: 1px solid var(--area2);
   -webkit-tap-highlight-color: transparent;
   .block {
     &:not(:first-child) {
       margin-left: 7px;
     }
   }
-  .label {
+  .input {
     flex: 1;
     display: flex;
     align-items: center;
@@ -29,8 +28,9 @@
     outline: none;
     border: none;
     background: transparent;
+    color: inherit;
     &::placeholder {
-      color: $disabled-font-color;
+      color: var(--font3);
     }
   }
   .icon {
@@ -38,12 +38,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $disabled-font-color;
+    color: var(--font2);
   }
   .clear {
     display: none;
     &:hover {
-      color: $active-font-color;
+      color: var(--main);
     }
   }
   &.allowclear {
@@ -54,16 +54,16 @@
     }
   }
   &:hover {
-    border-color: $hover-border-color;
+    border-color: var(--area3);
   }
   &.active {
-    border-color: $active-border-color;
-    box-shadow: 0 0 4px var(--main4);
-    background-color: $background-color;
+    border-color: var(--area3);
+    box-shadow: 0 0 4px var(--mask4);
   }
   &.disabled {
-    border-color: $disabled-border-color;
-    background-color: $disabled-background-color;
+    color: var(--font2);
+    border-color: var(--area2);
+    background-color: var(--area1);
     cursor: not-allowed;
   }
 }
