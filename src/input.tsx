@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import cn from 'classnames'
-import { CloseIcon } from 'xueyan-react-icon'
+import { CloseIcon } from 'sicon'
 import styles from './input.scss'
 
 export type InputOnChange<T> = (

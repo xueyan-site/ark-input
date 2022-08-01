@@ -32,7 +32,7 @@
       "ast/*": ["./pub/ast/*"],
       "com/*": ["./pub/com/*"],
       "utl/*": ["./pub/utl/*"],
-      "xueyan-react-input": ["../src"]
+      "ark-input": ["../src"]
     }
   }
 }

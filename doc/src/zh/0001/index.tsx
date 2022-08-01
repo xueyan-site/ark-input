@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Article, Segment } from 'xueyan-react-markdown'
 import { Playground } from 'xueyan-react-playground'
-import { Input } from 'xueyan-react-input'
+import { Input } from 'ark-input'
 
 const MARK1 = `
 文本输入组件库
@@ -11,7 +11,7 @@ const MARK1 = `
 
 const CODE1 = `
 import React, { useState } from 'react'
-import { Input } from 'xueyan-react-input'
+import { Input } from 'ark-input'
 
 export default function Example() {
   const [value, setValue] = useState<string>()
